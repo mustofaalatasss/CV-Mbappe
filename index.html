@@ -3,20 +3,1648 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Kylian Mbappé | Portofolio Profesional</title>
-    <link rel="icon" href="favicon.ico.ico">
-    <link rel="stylesheet" type="text/css" href="style.css">
+    <title>Kylian Mbappé | Official Portfolio & Agency</title>
+    
+    <!-- Favicon -->
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
+    
+    <!-- Google Fonts for Premium Sporty Typography -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Montserrat:wght@700;800;900&family=Outfit:wght@400;600;800;900&display=swap" rel="stylesheet">
+    
+    <!-- FontAwesome & Iconography CDNs -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- Early Script Declaration to Prevent ReferenceError during DOM parsing -->
+    <script>
+        // --- Robust Image Fallback Mechanism (System Best Practice) ---
+        function fallbackImage(img, theme) {
+            img.onerror = null; // Prevent infinite loops
+            
+            // Premium Unsplash sports & football-themed replacements as fallbacks
+            const fallbacks = {
+                stadium: 'https://images.unsplash.com/photo-1508098682722-e99c43a406b2?q=80&w=600',
+                realmadrid: 'https://images.unsplash.com/photo-1522771739844-6a9f6d5f14af?q=80&w=600',
+                realmadrid2: 'https://images.unsplash.com/photo-1579952362874-46365c68ff0a?q=80&w=600',
+                psg: 'https://images.unsplash.com/photo-1543351611-58f69d7c1781?q=80&w=600',
+                psg2: 'https://images.unsplash.com/photo-1518063319789-7217e6706b04?q=80&w=600',
+                psg3: 'https://images.unsplash.com/photo-1622279457486-62dcc4a431d6?q=80&w=600',
+                monaco: 'https://images.unsplash.com/photo-1508098682722-e99c43a406b2?q=80&w=600', // Beautiful Stadium Lights
+                childhood: 'https://images.unsplash.com/photo-1516567727-4f219d36a374?q=80&w=600',
+                sprint: 'https://images.unsplash.com/photo-1461896836934-ffe607ba8211?q=80&w=600',
+                worldcup: 'https://images.unsplash.com/photo-1518152006812-edab29b069ac?q=80&w=600',
+                trophy: 'https://images.unsplash.com/photo-1578269174936-2709b5a8c0e3?q=80&w=600',
+                nationsleague: 'https://images.unsplash.com/photo-1486282424010-a400c2b29c59?q=80&w=600',
+                training_agent: 'https://images.unsplash.com/photo-1517649763962-0c623066013b?q=80&w=600',
+                agent_headshot: 'https://images.unsplash.com/photo-1560250097-0b93528c311a?q=80&w=600'
+            };
+            
+            img.src = fallbacks[theme] || 'https://images.unsplash.com/photo-1508098682722-e99c43a406b2?q=80&w=600';
+            img.style.objectFit = 'cover';
+        }
+    </script>
+    
+    <!-- Embedded Stylesheet (Combines style.css into Single File) -->
+    <style>
+        /* --- 1. DESIGN TOKENS & VARIABLES --- */
+        :root {
+            --primary: #0D1B2A;
+            --primary-light: #1B263B;
+            --primary-dark: #08101C;
+            --accent: #FCA311;
+            --accent-glow: rgba(252, 163, 17, 0.35);
+            --accent-hover: #E59500;
+            --white: #FFFFFF;
+            --text-primary: #F8F9FA;
+            --text-secondary: #E5E5E5;
+            --text-muted: #9EADB8;
+            --glass-bg: rgba(13, 27, 42, 0.75);
+            --glass-border: rgba(255, 255, 255, 0.08);
+            --font-display: 'Outfit', 'Montserrat', sans-serif;
+            --font-body: 'Inter', sans-serif;
+            --transition-smooth: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        /* --- 2. GLOBAL RESET & BASE STYLES --- */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            outline: none;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            font-size: 16px;
+            background-color: var(--primary-dark);
+            color: var(--text-primary);
+            font-family: var(--font-body);
+            overflow-x: hidden;
+        }
+
+        body {
+            position: relative;
+            min-height: 100vh;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* --- 3. PREMIUM DECORATIVE & BACKGROUND ELEMENTS --- */
+        /* Ambient Glowing Backgrounds */
+        .ambient-glow-1 {
+            position: absolute;
+            top: 10%;
+            left: -10%;
+            width: 40vw;
+            height: 40vw;
+            background: radial-gradient(circle, var(--accent-glow) 0%, rgba(13,27,42,0) 70%);
+            filter: blur(120px);
+            z-index: -2;
+            pointer-events: none;
+            opacity: 0.5;
+        }
+
+        .ambient-glow-2 {
+            position: absolute;
+            bottom: 15%;
+            right: -10%;
+            width: 45vw;
+            height: 45vw;
+            background: radial-gradient(circle, rgba(0, 119, 182, 0.15) 0%, rgba(13,27,42,0) 70%);
+            filter: blur(140px);
+            z-index: -2;
+            pointer-events: none;
+            opacity: 0.6;
+        }
+
+        /* Particle Canvas Cover */
+        #particle-canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            pointer-events: none;
+        }
+
+        /* Custom Premium Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: var(--primary-dark);
+        }
+        ::-webkit-scrollbar-thumb {
+            background: var(--primary-light);
+            border-radius: 4px;
+            border: 2px solid var(--primary-dark);
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--accent);
+        }
+
+        /* Containers & Base Layout */
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        section {
+            padding: 100px 0;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Heading Styles */
+        .section-header {
+            position: relative;
+            margin-bottom: 70px;
+            text-align: center;
+        }
+
+        .section-title-bg {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -70%);
+            font-family: var(--font-display);
+            font-size: clamp(3rem, 10vw, 7.5rem);
+            font-weight: 900;
+            color: rgba(255, 255, 255, 0.02);
+            letter-spacing: 12px;
+            text-transform: uppercase;
+            white-space: nowrap;
+            user-select: none;
+            z-index: -1;
+        }
+
+        .section-title {
+            font-family: var(--font-display);
+            font-size: clamp(2rem, 4vw, 2.75rem);
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--white);
+            display: inline-block;
+        }
+
+        .section-title span {
+            color: var(--accent);
+            position: relative;
+        }
+
+        .section-title span::after {
+            content: '';
+            position: absolute;
+            bottom: -8px;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: var(--accent);
+            clip-path: polygon(0 0, 100% 0, 92% 100%, 0 100%);
+        }
+
+        /* Card Styles */
+        .card {
+            background: var(--glass-bg);
+            border: 1px solid var(--glass-border);
+            border-radius: 16px;
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            transition: var(--transition-smooth);
+        }
+
+        /* Buttons (Premium Sporty Look) */
+        .btn-group {
+            display: flex;
+            gap: 16px;
+            flex-wrap: wrap;
+            margin-top: 30px;
+        }
+
+        .tombol {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            padding: 14px 28px;
+            font-family: var(--font-display);
+            font-size: 0.95rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            text-decoration: none;
+            border-radius: 8px;
+            transition: var(--transition-smooth);
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+            letter-spacing: 1px;
+        }
+
+        .tombol-primary {
+            background: var(--accent);
+            color: var(--primary-dark);
+            box-shadow: 0 4px 15px rgba(252, 163, 17, 0.3);
+            border: none;
+        }
+
+        .tombol-primary:hover {
+            background: var(--accent-hover);
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(252, 163, 17, 0.5);
+        }
+
+        .tombol-secondary {
+            background: rgba(255, 255, 255, 0.05);
+            color: var(--white);
+            border: 1px solid var(--glass-border);
+        }
+
+        .tombol-secondary:hover {
+            background: rgba(255, 255, 255, 0.1);
+            border-color: var(--accent);
+            transform: translateY(-3px);
+            color: var(--accent);
+            box-shadow: 0 4px 15px rgba(252, 163, 17, 0.15);
+        }
+
+        /* --- 4. HEADER NAVIGATION --- */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+            transition: var(--transition-smooth);
+            background: transparent;
+            border-bottom: 1px solid transparent;
+        }
+
+        header.scrolled {
+            background: rgba(8, 16, 28, 0.9);
+            border-bottom: 1px solid var(--glass-border);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            padding: 8px 0;
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 75px;
+        }
+
+        .logo {
+            font-family: var(--font-display);
+            font-size: 1.8rem;
+            font-weight: 900;
+            color: var(--white);
+            text-decoration: none;
+            letter-spacing: -1px;
+            display: flex;
+            align-items: center;
+        }
+
+        .logo span {
+            color: var(--accent);
+            font-style: italic;
+            margin-left: 2px;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 32px;
+        }
+
+        .nav-links a {
+            font-family: var(--font-display);
+            font-size: 0.9rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            color: var(--text-muted);
+            text-decoration: none;
+            letter-spacing: 1px;
+            transition: var(--transition-smooth);
+            position: relative;
+            padding: 8px 0;
+        }
+
+        .nav-links a:hover,
+        .nav-links a.active {
+            color: var(--accent);
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--accent);
+            transition: var(--transition-smooth);
+        }
+
+        .nav-links a:hover::after,
+        .nav-links a.active::after {
+            width: 100%;
+        }
+
+        /* Hamburger Toggle for Mobile */
+        .hamburger {
+            display: none;
+            background: none;
+            border: none;
+            cursor: pointer;
+            flex-direction: column;
+            gap: 6px;
+            z-index: 1100;
+        }
+
+        .hamburger span {
+            display: block;
+            width: 25px;
+            height: 3px;
+            background: var(--white);
+            border-radius: 2px;
+            transition: var(--transition-smooth);
+        }
+
+        /* Hamburger Animation */
+        .hamburger.active span:nth-child(1) {
+            transform: translateY(9px) rotate(45deg);
+            background: var(--accent);
+        }
+        .hamburger.active span:nth-child(2) {
+            opacity: 0;
+        }
+        .hamburger.active span:nth-child(3) {
+            transform: translateY(-9px) rotate(-45deg);
+            background: var(--accent);
+        }
+
+        /* --- 5. HERO SECTION --- */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            padding-top: 130px;
+            overflow: hidden;
+        }
+
+        .hero-content {
+            display: grid;
+            grid-template-columns: 1.1fr 0.9fr;
+            gap: 50px;
+            align-items: center;
+        }
+
+        .hero-text {
+            position: relative;
+            z-index: 2;
+        }
+
+        .hero-tag {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(252, 163, 17, 0.1);
+            border: 1px solid rgba(252, 163, 17, 0.25);
+            color: var(--accent);
+            padding: 8px 16px;
+            border-radius: 30px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin-bottom: 24px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .hero-tag i {
+            font-size: 0.75rem;
+            animation: pulse 2s infinite;
+        }
+
+        .hero h2 {
+            font-family: var(--font-display);
+            font-size: clamp(1.5rem, 3vw, 2.5rem);
+            font-weight: 700;
+            color: var(--white);
+            margin-bottom: 5px;
+        }
+
+        .hero h1 {
+            font-family: var(--font-display);
+            font-size: clamp(2.5rem, 6vw, 4.75rem);
+            font-weight: 900;
+            line-height: 1.1;
+            text-transform: uppercase;
+            letter-spacing: -1px;
+            color: var(--white);
+            margin-bottom: 20px;
+        }
+
+        .hero h1 span {
+            color: var(--accent);
+            position: relative;
+            display: inline-block;
+        }
+
+        .hero p {
+            font-size: clamp(1rem, 1.2vw, 1.15rem);
+            color: var(--text-secondary);
+            max-width: 550px;
+            margin-bottom: 35px;
+        }
+
+        /* Hero Image Container with Frame & Accents */
+        .hero-img-area {
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .profile-img-container {
+            width: 100%;
+            max-width: 430px;
+            aspect-ratio: 4/5;
+            position: relative;
+            border-radius: 24px;
+            overflow: hidden;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+            border: 2px solid var(--glass-border);
+            z-index: 2;
+        }
+
+        .profile-img-container::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to top, rgba(13, 27, 42, 0.75) 0%, rgba(13, 27, 42, 0) 40%);
+            z-index: 1;
+            pointer-events: none;
+        }
+
+        .edit-foto {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: var(--transition-smooth);
+        }
+
+        /* Premium geometric border frames */
+        .hero-img-area::after {
+            content: '';
+            position: absolute;
+            bottom: -15px;
+            right: -15px;
+            width: 100%;
+            max-width: 430px;
+            aspect-ratio: 4/5;
+            border: 3px solid var(--accent);
+            border-radius: 24px;
+            z-index: 1;
+            pointer-events: none;
+            clip-path: polygon(70% 100%, 100% 100%, 100% 70%, 100% 0, 95% 0, 95% 95%, 0 95%, 0 100%);
+        }
+
+        .hero-img-area::before {
+            content: '';
+            position: absolute;
+            top: -15px;
+            left: -15px;
+            width: 100%;
+            max-width: 430px;
+            aspect-ratio: 4/5;
+            border: 3px solid var(--accent);
+            border-radius: 24px;
+            z-index: 1;
+            pointer-events: none;
+            clip-path: polygon(0 0, 30% 0, 30% 5%, 5% 5%, 5% 30%, 0 30%);
+            opacity: 0.7;
+        }
+
+        /* Abstract Motion Shapes */
+        .motion-shape {
+            position: absolute;
+            background: var(--accent);
+            opacity: 0.1;
+            z-index: 1;
+            pointer-events: none;
+        }
+
+        .motion-shape-1 {
+            width: 80px;
+            height: 4px;
+            top: 20%;
+            right: 45%;
+            transform: rotate(-15deg);
+        }
+
+        .motion-shape-2 {
+            width: 120px;
+            height: 2px;
+            bottom: 30%;
+            left: 5%;
+            transform: rotate(25deg);
+        }
+
+        /* Scroll Down Indicator Mouse */
+        .scroll-indicator {
+            position: absolute;
+            bottom: 40px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 10px;
+            text-decoration: none;
+            color: var(--text-muted);
+            font-size: 0.8rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            transition: var(--transition-smooth);
+            z-index: 10;
+        }
+
+        .scroll-indicator:hover {
+            color: var(--accent);
+        }
+
+        .scroll-indicator-mouse {
+            width: 24px;
+            height: 40px;
+            border: 2px solid var(--text-muted);
+            border-radius: 12px;
+            display: flex;
+            justify-content: center;
+            padding-top: 8px;
+        }
+
+        .scroll-indicator-wheel {
+            width: 4px;
+            height: 8px;
+            background: var(--accent);
+            border-radius: 2px;
+            animation: scroll-wheel 1.6s infinite;
+        }
+
+        /* --- 6. ABOUT SECTION & STATS --- */
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1.2fr 0.8fr;
+            gap: 40px;
+            align-items: stretch;
+        }
+
+        .about-text {
+            padding: 40px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .about-text p {
+            font-size: 1.1rem;
+            color: var(--text-secondary);
+            line-height: 1.7;
+            margin-bottom: 30px;
+        }
+
+        .career-timeline {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        .career-timeline .stat-box {
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid var(--glass-border);
+            border-radius: 12px;
+            transition: var(--transition-smooth);
+        }
+
+        .career-timeline .stat-box:hover {
+            border-color: rgba(252, 163, 17, 0.3);
+            background: rgba(252, 163, 17, 0.01);
+            transform: translateY(-2px);
+        }
+
+        /* Stats Block */
+        .stats-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        .stats-container .stat-box {
+            background: var(--glass-bg);
+            border: 1px solid var(--glass-border);
+            border-radius: 16px;
+            padding: 30px 20px;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            transition: var(--transition-smooth);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+        }
+
+        .stats-container .stat-box:hover {
+            border-color: var(--accent);
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(252, 163, 17, 0.1);
+        }
+
+        .stat-num {
+            font-family: var(--font-display);
+            font-size: clamp(2rem, 4vw, 3.25rem);
+            font-weight: 900;
+            color: var(--accent);
+            line-height: 1;
+            margin-bottom: 10px;
+            text-shadow: 0 0 15px rgba(252, 163, 17, 0.2);
+        }
+
+        .stat-label {
+            font-size: 0.9rem;
+            font-weight: 700;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        /* Career Path Specific Timeline Cards */
+        #experience-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 25px;
+            margin-top: 50px;
+        }
+
+        .career-card {
+            padding: 0;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+        }
+
+        .career-card-img {
+            width: 100%;
+            height: 220px; /* Ditingkatkan dari 180px agar bingkai foto lebih tinggi dan proporsional */
+            object-fit: cover;
+            object-position: center 15%; /* Mencegah kepala Mbappe terpotong dengan memfokuskan porsi atas foto */
+            border-bottom: 2px solid var(--glass-border);
+            transition: var(--transition-smooth);
+            /* Crisp rendering enhancements to prevent scales from blurring */
+            backface-visibility: hidden;
+            -webkit-backface-visibility: hidden;
+            transform: translateZ(0);
+        }
+
+        .career-card:hover .career-card-img {
+            transform: scale(1.05) translateZ(0);
+            border-color: var(--accent);
+        }
+
+        .career-card h3 {
+            font-family: var(--font-display);
+            font-size: 1.15rem;
+            font-weight: 800;
+            color: var(--white);
+            margin: 20px 24px 5px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .career-card h3 span {
+            font-size: 0.8rem;
+            color: var(--accent);
+            background: rgba(252, 163, 17, 0.1);
+            padding: 4px 10px;
+            border-radius: 20px;
+            font-weight: 600;
+        }
+
+        .career-card h4 {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            font-weight: 500;
+            margin: 0 24px 12px;
+        }
+
+        .career-card p {
+            font-size: 0.95rem;
+            color: var(--text-secondary);
+            margin: 0 24px 24px;
+            flex-grow: 1;
+        }
+
+        /* --- 7. SKILLS SECTION --- */
+        .skills-layout {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+            align-items: center;
+        }
+
+        .skills-intro h3 {
+            font-family: var(--font-display);
+            font-size: 1.75rem;
+            font-weight: 800;
+            color: var(--white);
+            margin: 25px 0 15px;
+        }
+
+        .skills-intro p {
+            font-size: 1.05rem;
+            color: var(--text-secondary);
+            line-height: 1.7;
+        }
+
+        /* Image Box inside Skills */
+        .skills-img-container {
+            width: 100%;
+            height: auto;
+            aspect-ratio: 16/9;
+            border-radius: 16px;
+            overflow: hidden;
+            border: 1px solid var(--glass-border);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        .skills-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center 15%; /* Mencegah kepala terpotong di bagian Keahlian */
+            transition: var(--transition-smooth);
+        }
+
+        .skills-img-container:hover .skills-img {
+            transform: scale(1.03);
+        }
+
+        /* Skill Item Bar Style */
+        .skills-visual-box {
+            display: flex;
+            flex-direction: column;
+            gap: 28px;
+        }
+
+        .skill-item {
+            width: 100%;
+        }
+
+        .skill-info {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 10px;
+        }
+
+        .skill-name {
+            font-size: 1.05rem;
+            font-weight: 700;
+            color: var(--white);
+        }
+
+        .skill-val {
+            font-family: var(--font-display);
+            font-size: 1.1rem;
+            font-weight: 800;
+            color: var(--accent);
+        }
+
+        .skill-bar-container {
+            width: 100%;
+            height: 8px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 4px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .skill-bar-fill {
+            height: 100%;
+            width: 0%; /* Animated on scroll via JS */
+            background: linear-gradient(to right, var(--accent) 0%, #FFD166 100%);
+            border-radius: 4px;
+            box-shadow: 0 0 10px rgba(252, 163, 17, 0.5);
+            position: relative;
+        }
+
+        /* --- 8. ACHIEVEMENTS / PORTFOLIO --- */
+        .portfolio-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+            gap: 30px;
+        }
+
+        .portfolio-card {
+            position: relative;
+            height: 380px;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
+            border: 1px solid var(--glass-border);
+            cursor: pointer;
+            z-index: 1;
+        }
+
+        .portfolio-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center 15%; /* Menjaga fokus wajah di galeri pencapaian */
+            transition: var(--transition-smooth);
+        }
+
+        .portfolio-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to top, rgba(8, 16, 28, 0.95) 0%, rgba(8, 16, 28, 0.4) 60%, rgba(8, 16, 28, 0.1) 100%);
+            padding: 30px;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            transition: var(--transition-smooth);
+            z-index: 2;
+        }
+
+        .portfolio-tag {
+            align-self: flex-start;
+            background: var(--accent);
+            color: var(--primary-dark);
+            font-family: var(--font-display);
+            font-size: 0.75rem;
+            font-weight: 800;
+            text-transform: uppercase;
+            padding: 4px 10px;
+            border-radius: 4px;
+            margin-bottom: 12px;
+            letter-spacing: 0.5px;
+        }
+
+        .portfolio-card h3 {
+            font-family: var(--font-display);
+            font-size: 1.35rem;
+            font-weight: 800;
+            color: var(--white);
+            margin-bottom: 8px;
+            line-height: 1.3;
+            transition: var(--transition-smooth);
+        }
+
+        .portfolio-card p {
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+            opacity: 0.85;
+            line-height: 1.5;
+            transform: translateY(0);
+            transition: var(--transition-smooth);
+        }
+
+        /* Portfolio hover states */
+        .portfolio-card:hover .portfolio-img {
+            transform: scale(1.08);
+        }
+
+        .portfolio-card:hover .portfolio-overlay {
+            background: linear-gradient(to top, rgba(8, 16, 28, 0.98) 0%, rgba(8, 16, 28, 0.6) 50%, rgba(8, 16, 28, 0.2) 100%);
+        }
+
+        .portfolio-card:hover h3 {
+            color: var(--accent);
+        }
+
+        .portfolio-card:hover {
+            box-shadow: 0 15px 35px rgba(252, 163, 17, 0.15);
+            border-color: var(--accent-glow);
+        }
+
+        /* --- 9. CONTACT & AGENT SECTION --- */
+        .agent-grid {
+            display: grid;
+            grid-template-columns: 0.95fr 1.05fr;
+            gap: 50px;
+            align-items: center;
+        }
+
+        /* Premium Agent Collage */
+        .agent-img-box {
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+        }
+
+        .agency-collage {
+            position: relative;
+            width: 100%;
+            max-width: 440px;
+            aspect-ratio: 4/5;
+        }
+
+        .collage-main {
+            width: 100%;
+            height: 100%;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.4);
+            border: 2px solid var(--glass-border);
+            position: relative;
+            z-index: 1;
+        }
+
+        .collage-main img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        /* Overlay Inset Photo (Close-up of agent) */
+        .collage-inset {
+            position: absolute;
+            bottom: -20px;
+            right: -20px;
+            width: 42%;
+            aspect-ratio: 1/1;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
+            border: 3px solid var(--accent);
+            z-index: 3;
+        }
+
+        .collage-inset img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .agent-badge {
+            position: absolute;
+            bottom: -20px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--accent);
+            color: var(--primary-dark);
+            font-family: var(--font-display);
+            font-size: 0.8rem;
+            font-weight: 800;
+            text-transform: uppercase;
+            padding: 8px 20px;
+            border-radius: 30px;
+            white-space: nowrap;
+            box-shadow: 0 4px 15px rgba(252, 163, 17, 0.35);
+            z-index: 4;
+            letter-spacing: 0.5px;
+        }
+
+        /* Form / Contact Card Info */
+        .contact-card {
+            padding: 40px;
+        }
+
+        .contact-intro h3 {
+            font-family: var(--font-display);
+            font-size: 1.8rem;
+            font-weight: 800;
+            color: var(--white);
+            margin-bottom: 12px;
+        }
+
+        .contact-intro p {
+            font-size: 1.05rem;
+            color: var(--text-secondary);
+            margin-bottom: 35px;
+            line-height: 1.6;
+        }
+
+        .contact-info-list {
+            display: flex;
+            flex-direction: column;
+            gap: 24px;
+            margin-bottom: 35px;
+        }
+
+        .contact-info-item {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .contact-icon-wrapper {
+            width: 50px;
+            height: 50px;
+            border-radius: 12px;
+            background: rgba(252, 163, 17, 0.1);
+            border: 1px solid rgba(252, 163, 17, 0.25);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--accent);
+            font-size: 1.25rem;
+            flex-shrink: 0;
+            transition: var(--transition-smooth);
+        }
+
+        .contact-info-item:hover .contact-icon-wrapper {
+            background: var(--accent);
+            color: var(--primary-dark);
+            transform: scale(1.05);
+            box-shadow: 0 0 15px var(--accent-glow);
+        }
+
+        .contact-text-box {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .contact-label {
+            font-size: 0.8rem;
+            font-weight: 700;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .contact-value {
+            font-size: 1.15rem;
+            font-weight: 600;
+            color: var(--white);
+            transition: var(--transition-smooth);
+        }
+
+        .contact-info-item:hover .contact-value {
+            color: var(--accent);
+        }
+
+        /* --- 10. FOOTER DESIGN --- */
+        footer {
+            background: var(--primary-dark);
+            border-top: 1px solid var(--glass-border);
+            padding: 50px 0;
+            position: relative;
+            z-index: 10;
+        }
+
+        .footer-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            gap: 25px;
+        }
+
+        .footer-logo {
+            font-family: var(--font-display);
+            font-size: 2.2rem;
+            font-weight: 900;
+            color: var(--white);
+            text-decoration: none;
+            letter-spacing: -1px;
+        }
+
+        .footer-logo span {
+            color: var(--accent);
+            font-style: italic;
+        }
+
+        .footer-text {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            max-width: 600px;
+            line-height: 1.6;
+        }
+
+        .footer-socials {
+            display: flex;
+            gap: 16px;
+        }
+
+        .social-link {
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid var(--glass-border);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-secondary);
+            font-size: 1.1rem;
+            text-decoration: none;
+            transition: var(--transition-smooth);
+        }
+
+        .social-link:hover {
+            background: var(--accent);
+            color: var(--primary-dark);
+            border-color: var(--accent);
+            transform: translateY(-4px);
+            box-shadow: 0 5px 15px rgba(252, 163, 17, 0.3);
+        }
+
+        /* --- 11. ANIMATIONS & RESPONSIVE QUERY --- */
+        @keyframes scroll-wheel {
+            0% { transform: translateY(0); opacity: 1; }
+            50% { transform: translateY(12px); opacity: 0.3; }
+            100% { transform: translateY(0); opacity: 1; }
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); opacity: 0.8; }
+            50% { transform: scale(1.2); opacity: 1; }
+            100% { transform: scale(1); opacity: 0.8; }
+        }
+
+        /* Tablet Responsive (max-width: 1024px) */
+        @media (max-width: 1024px) {
+            section {
+                padding: 80px 0;
+            }
+
+            .hero-content {
+                gap: 40px;
+            }
+
+            .about-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .skills-layout {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+
+            .agent-grid {
+                grid-template-columns: 1fr;
+                gap: 60px;
+            }
+
+            .collage-main {
+                max-width: 400px;
+            }
+        }
+
+        /* Mobile Responsive (max-width: 768px) */
+        @media (max-width: 768px) {
+            .hamburger {
+                display: flex;
+            }
+
+            .nav-links {
+                position: fixed;
+                top: 0;
+                right: -100%;
+                width: 75%;
+                max-width: 320px;
+                height: 100vh;
+                background: rgba(8, 16, 28, 0.98);
+                backdrop-filter: blur(20px);
+                -webkit-backdrop-filter: blur(20px);
+                border-left: 1px solid var(--glass-border);
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                gap: 40px;
+                transition: var(--transition-smooth);
+                z-index: 1000;
+            }
+
+            .nav-links.active {
+                right: 0;
+            }
+
+            .hero-content {
+                grid-template-columns: 1fr;
+                text-align: center;
+                gap: 50px;
+            }
+
+            .hero-text {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .hero-text p {
+                text-align: center;
+            }
+
+            .hero-img-area {
+                order: -1; /* Image first on mobile */
+            }
+
+            .profile-img-container {
+                max-width: 330px;
+            }
+
+            .hero-img-area::before,
+            .hero-img-area::after {
+                max-width: 330px;
+            }
+
+            .about-text {
+                padding: 30px 20px;
+            }
+
+            .career-timeline {
+                grid-template-columns: 1fr;
+            }
+
+            .stats-container {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            .contact-card {
+                padding: 30px 20px;
+            }
+
+            .collage-inset {
+                right: -10px;
+                bottom: -10px;
+            }
+        }
+
+        /* --- BUTTON RIPPLE & GLOW ENHANCEMENTS --- */
+        .tombol {
+            position: relative;
+            overflow: hidden;
+            border-radius: 8px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            transition: var(--transition-smooth);
+        }
+        .tombol::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 300%;
+            height: 300%;
+            background: rgba(255, 255, 255, 0.25);
+            border-radius: 50%;
+            transform: translate(-50%, -50%) scale(0);
+            transition: transform 0.6s ease-out;
+            pointer-events: none;
+            opacity: 0;
+        }
+        .tombol:active::after {
+            transform: translate(-50%, -50%) scale(1);
+            opacity: 1;
+            transition: 0s;
+        }
+        .tombol-primary:hover {
+            background: var(--accent-hover);
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(252, 163, 17, 0.6), 0 0 15px rgba(252, 163, 17, 0.4);
+        }
+        .tombol-secondary:hover {
+            background: rgba(255, 255, 255, 0.1);
+            border-color: var(--accent);
+            transform: translateY(-3px);
+            color: var(--accent);
+            box-shadow: 0 8px 25px rgba(252, 163, 17, 0.2);
+        }
+
+        /* --- LIGHTBOX MODAL --- */
+        .lightbox-modal {
+            display: none;
+            position: fixed;
+            z-index: 10000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(8, 16, 28, 0.95);
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            opacity: 0;
+            transition: opacity 0.4s ease;
+        }
+        .lightbox-modal.active {
+            display: flex;
+            opacity: 1;
+        }
+        .lightbox-content {
+            margin: auto;
+            display: block;
+            max-width: 85%;
+            max-height: 75%;
+            border-radius: 16px;
+            border: 2px solid var(--glass-border);
+            box-shadow: 0 10px 40px rgba(0,0,0,0.5);
+            transform: scale(0.9);
+            transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .lightbox-modal.active .lightbox-content {
+            transform: scale(1);
+        }
+        .lightbox-close {
+            position: absolute;
+            top: 30px;
+            right: 40px;
+            color: var(--text-secondary);
+            font-size: 40px;
+            font-weight: bold;
+            transition: var(--transition-smooth);
+            cursor: pointer;
+            z-index: 10001;
+        }
+        .lightbox-close:hover {
+            color: var(--accent);
+        }
+        .lightbox-caption {
+            margin: auto;
+            display: block;
+            width: 80%;
+            max-width: 700px;
+            text-align: center;
+            color: var(--text-primary);
+            padding: 10px 0;
+            font-family: var(--font-display);
+            font-weight: 700;
+            font-size: 1.2rem;
+        }
+
+        /* --- DYNAMIC DETAIL MODAL --- */
+        .detail-modal {
+            display: none;
+            position: fixed;
+            z-index: 9999;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(8, 16, 28, 0.98);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            opacity: 0;
+            transition: opacity 0.4s ease;
+        }
+        .detail-modal.active {
+            display: block;
+            opacity: 1;
+        }
+        .detail-modal-wrapper {
+            position: relative;
+            background: var(--primary-light);
+            margin: 50px auto;
+            padding: 40px;
+            width: 90%;
+            max-width: 900px;
+            border-radius: 24px;
+            border: 1px solid var(--glass-border);
+            box-shadow: 0 25px 60px rgba(0, 0, 0, 0.5);
+            transform: translateY(50px);
+            transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .detail-modal.active .detail-modal-wrapper {
+            transform: translateY(0);
+        }
+        .detail-modal-close {
+            position: absolute;
+            top: 25px;
+            right: 30px;
+            color: var(--text-secondary);
+            font-size: 35px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: var(--transition-smooth);
+        }
+        .detail-modal-close:hover {
+            color: var(--accent);
+        }
+        .detail-modal-header {
+            margin-bottom: 25px;
+        }
+        .detail-tag {
+            display: inline-block;
+            background: var(--accent);
+            color: var(--primary-dark);
+            font-family: var(--font-display);
+            font-weight: 800;
+            text-transform: uppercase;
+            font-size: 0.75rem;
+            padding: 4px 12px;
+            border-radius: 4px;
+            margin-bottom: 10px;
+        }
+        .detail-modal-header h2 {
+            font-family: var(--font-display);
+            font-size: 2.2rem;
+            font-weight: 900;
+            color: var(--white);
+        }
+        .detail-modal-body {
+            display: grid;
+            grid-template-columns: 1fr 1.2fr;
+            gap: 40px;
+        }
+        .detail-modal-body img {
+            width: 100%;
+            aspect-ratio: 4/5;
+            object-fit: cover;
+            border-radius: 16px;
+            border: 1px solid var(--glass-border);
+        }
+        .detail-modal-subtitle {
+            font-family: var(--font-display);
+            font-size: 1.3rem;
+            font-weight: 800;
+            color: var(--accent);
+            margin-bottom: 15px;
+        }
+        .detail-modal-info p {
+            color: var(--text-secondary);
+            line-height: 1.7;
+            margin-bottom: 20px;
+            font-size: 0.98rem;
+        }
+        .detail-stats {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+            margin-top: 20px;
+        }
+        .detail-stat-item {
+            background: var(--primary-dark);
+            border: 1px solid var(--glass-border);
+            padding: 12px 18px;
+            border-radius: 8px;
+        }
+        .detail-stat-val {
+            font-family: var(--font-display);
+            font-size: 1.4rem;
+            font-weight: 800;
+            color: var(--accent);
+        }
+        .detail-stat-lbl {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            font-weight: 700;
+            text-transform: uppercase;
+        }
+        .detail-timeline {
+            margin-top: 25px;
+            border-left: 2px solid var(--glass-border);
+            padding-left: 20px;
+        }
+        .detail-timeline-item {
+            position: relative;
+            padding-bottom: 15px;
+        }
+        .detail-timeline-item::after {
+            content: '';
+            position: absolute;
+            left: -26px;
+            top: 5px;
+            width: 10px;
+            height: 10px;
+            background: var(--accent);
+            border-radius: 50%;
+            box-shadow: 0 0 10px var(--accent-glow);
+        }
+        .detail-timeline-time {
+            font-family: var(--font-display);
+            font-size: 0.85rem;
+            font-weight: 800;
+            color: var(--accent);
+        }
+        .detail-timeline-title {
+            font-weight: 700;
+            color: var(--white);
+            font-size: 0.95rem;
+        }
+
+        /* --- FLOATING ACCENTS --- */
+        .floating-accent {
+            position: absolute;
+            pointer-events: none;
+            opacity: 0.15;
+            z-index: 0;
+            filter: blur(2px);
+            transition: transform 0.1s ease-out;
+        }
+        .floating-ball {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            border: 2px dashed var(--accent);
+            background: radial-gradient(circle, rgba(252,163,17,0.1) 0%, transparent 80%);
+        }
+        .floating-blur-line {
+            width: 150px;
+            height: 3px;
+            background: linear-gradient(90deg, transparent, var(--accent), transparent);
+            filter: blur(4px);
+        }
+
+        /* --- SKILL TOOLTIPS --- */
+        .skill-item {
+            position: relative;
+            cursor: help;
+        }
+        .skill-tooltip {
+            position: absolute;
+            background: var(--primary-light);
+            border: 1px solid var(--accent);
+            color: var(--text-primary);
+            padding: 8px 14px;
+            border-radius: 6px;
+            font-size: 0.85rem;
+            bottom: 110%;
+            left: 50%;
+            transform: translateX(-50%) translateY(10px);
+            width: 250px;
+            z-index: 100;
+            opacity: 0;
+            pointer-events: none;
+            transition: var(--transition-smooth);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.4);
+            text-align: center;
+        }
+        .skill-tooltip::after {
+            content: '';
+            position: absolute;
+            top: 100%;
+            left: 50%;
+            margin-left: -5px;
+            border-width: 5px;
+            border-style: solid;
+            border-color: var(--accent) transparent transparent transparent;
+        }
+        .skill-item:hover .skill-tooltip {
+            opacity: 1;
+            transform: translateX(-50%) translateY(0);
+        }
+
+        /* --- ABOUT WAVE BACKGROUND --- */
+        .about-wave-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0.05;
+            background-image: radial-gradient(var(--accent) 1px, transparent 1px);
+            background-size: 24px 24px;
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        @media(max-width: 768px) {
+            .detail-modal-body {
+                grid-template-columns: 1fr;
+            }
+            .detail-modal-wrapper {
+                padding: 25px;
+                margin: 20px auto;
+            }
+        }
+    </style>
 </head>
 <body>
-    
-    <header>
+
+    <!-- Ambient Glowing Light Backgrounds -->
+    <div class="ambient-glow-1"></div>
+    <div class="ambient-glow-2"></div>
+
+    <!-- Particle & Motion Line Background Canvas -->
+    <canvas id="particle-canvas"></canvas>
+
+    <!-- Header Navigation -->
+    <header id="navbar">
         <div class="container">
             <nav>
-                <a href="#" class="logo">KM7</a>
-                <ul class="nav-links">
-                    <li><a href="#Profile">Home</a></li>
+                <a href="#Profile" class="logo">KM<span>7</span></a>
+                
+                <button class="hamburger" id="hamburger-btn" aria-label="Buka Menu">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+                
+                <ul class="nav-links" id="nav-menu">
+                    <li><a href="#Profile" class="active">Home</a></li>
                     <li><a href="#About">About</a></li>
-                    <li><a href="#expereince">Resume</a></li>
+                    <li><a href="#Skills">Skills</a></li>
                     <li><a href="#Achievment">Achievements</a></li>
                     <li><a href="#Contact">Contact</a></li>
                 </ul>
@@ -27,103 +1655,1100 @@
     <main>
         <!-- Hero Section -->
         <section id="Profile" class="hero">
+            <!-- Subtle Parallax & Motion Shapes -->
+            <div class="motion-shape motion-shape-1"></div>
+            <div class="motion-shape motion-shape-2"></div>
+            <div class="floating-accent floating-ball" style="top: 20%; left: 10%;" data-depth="0.2"></div>
+            <div class="floating-accent floating-blur-line" style="top: 40%; right: 15%;" data-depth="0.15"></div>
+            <div class="floating-accent floating-ball" style="bottom: 15%; right: 25%;" data-depth="0.3"></div>
+            
             <div class="container">
                 <div class="hero-content">
                     <div class="hero-text">
-                        <h2>Halo, Saya</h2>
-                        <h1>Kylian Mbappé</h1>
-                        <h2>Pemain Sepak Bola Profesional Prancis</h2>
+                        <div class="hero-tag">
+                            <i class="fa-solid fa-circle-nodes"></i>
+                            Pemain Sepak Bola Profesional Prancis
+                        </div>
+                        
+                        <h1 id="hero-title">Kylian <span>Mbappé</span></h1>
+                        <p>Penyerang elit dunia yang mendefinisikan ulang batas kecepatan, presisi, dan kelas di lapangan hijau. Bersama Real Madrid dan tim nasional Prancis, melaju menembus pertahanan demi gelar dan kejayaan abadi.</p>
+                        
                         <div class="btn-group">
-                            <a href="javascript:void(0)" onclick="window.open('https://mail.google.com/mail/?view=cm&fs=1&to=mustofaalatos0@gmail.com');" class="tombol">Email Me</a>
-                            <a href="javascript:void(0)" onclick="window.open('https://wa.link/rdfdrp');" class="tombol">WhatsApp</a>
+                            <a href="javascript:void(0)" onclick="window.open('https://mail.google.com/mail/?view=cm&fs=1&to=mustofaalatos0@gmail.com');" class="tombol tombol-primary">
+                                <i class="fa-solid fa-envelope"></i> Email Me
+                            </a>
+                            <a href="javascript:void(0)" onclick="window.open('https://wa.link/rdfdrp');" class="tombol tombol-secondary">
+                                <i class="fa-brands fa-whatsapp"></i> WhatsApp
+                            </a>
                         </div>
                     </div>
-                    <div class="profile-img-container">
-                        <img src="kylian-mbappe.jpeg" class="edit-foto" alt="Kylian Mbappe">
+                    
+                    <div class="hero-img-area">
+                        <div class="profile-img-container" id="hero-img-container">
+                            <img src="kylian-mbappe.jpeg" class="edit-foto" alt="Kylian Mbappe" onerror="fallbackImage(this, 'stadium')">
+                        </div>
                     </div>
                 </div>
             </div>
+            
+            <!-- Mouse Scroll Indicator -->
+            <a href="#About" class="scroll-indicator">
+                <span>Scroll Down</span>
+                <div class="scroll-indicator-mouse">
+                    <div class="scroll-indicator-wheel"></div>
+                </div>
+            </a>
         </section>
 
         <!-- About Section -->
         <section id="About">
+            <div class="about-wave-bg"></div>
             <div class="container">
-                <h2 class="section-title">Tentang Saya</h2>
-                <div class="card">
-                    <p>Kylian Mbappé adalah penyerang bintang asal Prancis yang dikenal karena kecepatan luar biasa dan insting mencetak gol yang tajam, menjadikannya salah satu pemain terbaik di generasi ini. Setelah mengukir sejarah sebagai pencetak gol terbanyak sepanjang masa di PSG dan membawa Prancis menjuarai Piala Dunia 2018, pemain yang kini membela Real Madrid ini terus membuktikan kelasnya sebagai ikon sepak bola modern yang memiliki perpaduan sempurna antara teknik, atletis, dan mental pemenang.</p>
+                <div class="section-header">
+                    <span class="section-title-bg">LEGEND</span>
+                    <h2 class="section-title">Tentang <span>Mbappe</span></h2>
                 </div>
-            </div>
-        </section>
-
-        <!-- Experience Section -->
-        <section id="expereince">
-            <div class="container">
-                <h2 class="section-title">Pengalaman Karier</h2>
                 
-                <div class="card">
-                    <h3>Real Madrid (2024–Sekarang)</h3>
-                    <p>Setelah bertahun-tahun menjadi incaran, Mbappé akhirnya mewujudkan kepindahan impiannya ke klub raksasa Spanyol pada 1 Juli 2024 dengan status bebas transfer.</p>
+                <div class="about-grid">
+                    <div class="about-text card" id="about-card">
+                        <p>Kylian Mbappé adalah penyerang bintang asal Prancis yang dikenal karena kecepatan luar biasa dan insting mencetak gol yang tajam, menjadikannya salah satu pemain terbaik di generasi ini. Setelah mengukir sejarah sebagai pencetak gol terbanyak sepanjang masa di PSG dan membawa Prancis menjuarai Piala Dunia 2018, pemain yang kini membela Real Madrid ini terus membuktikan kelasnya sebagai ikon sepak bola modern yang memiliki perpaduan sempurna antara teknik, atletis, dan mental pemenang.</p>
+                        
+                        <!-- Career Details -->
+                        <div class="career-timeline">
+                            <div class="stat-box" style="text-align: left; padding: 20px;">
+                                <h4 style="color: var(--accent); font-weight: 700; margin-bottom: 6px;"><i class="fa-solid fa-shield-halved"></i> Klub Saat Ini</h4>
+                                <p style="color: var(--white); font-weight: 600; font-size: 1.1rem;">Real Madrid C.F.</p>
+                            </div>
+                            <div class="stat-box" style="text-align: left; padding: 20px;">
+                                <h4 style="color: var(--accent); font-weight: 700; margin-bottom: 6px;"><i class="fa-solid fa-running"></i> Posisi Bermain</h4>
+                                <p style="color: var(--white); font-weight: 600; font-size: 1.1rem;">Penyerang / Sayap Kiri</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Stats Blocks with GSAP Count Up -->
+                    <div class="stats-container" id="stats-box-area">
+                        <div class="stat-box">
+                            <span class="stat-num" data-target="330">0</span>
+                            <span class="stat-label">Gol Profesional</span>
+                        </div>
+                        <div class="stat-box">
+                            <span class="stat-num" data-target="140">0</span>
+                            <span class="stat-label">Asis Karier</span>
+                        </div>
+                        <div class="stat-box">
+                            <span class="stat-num" data-target="7">0</span>
+                            <span class="stat-label">Gelar Ligue 1</span>
+                        </div>
+                        <div class="stat-box">
+                            <span class="stat-num" data-target="1">0</span>
+                            <span class="stat-label">Piala Dunia FIFA</span>
+                        </div>
+                    </div>
                 </div>
+                
+                <!-- Experience Cards Timeline with Specific Images -->
+                <div class="career-timeline" id="experience-cards" style="margin-top: 60px;">
+                    <div class="card career-card" onclick="openDetail('realmadrid')">
+                        <img src="mbappe real madrid.jpg" class="career-card-img" alt="Kylian Mbappe Real Madrid" onerror="fallbackImage(this, 'realmadrid')">
+                        <h3>Real Madrid <span>2024–Sekarang</span> <i class="fa-solid fa-arrow-up-right-from-square" style="font-size:0.9rem; margin-left:8px;"></i></h3>
+                        <h4>Era Raksasa Baru Spanyol</h4>
+                        <p>Mbappé mewujudkan kepindahan impiannya ke klub tersukses di Eropa, Real Madrid C.F., pada Juli 2024 dengan status bebas transfer. Langsung mempersembahkan Piala Super UEFA pada laga debutnya.</p>
+                    </div>
 
-                <div class="card">
-                    <h3>Paris Saint-Germain / PSG (2017–2024)</h3>
-                    <p>Mbappé bergabung dengan raksasa Paris dengan status pinjaman terlebih dahulu sebelum dipermanenkan dengan rekor transfer sekitar €180 juta. Menjadi pencetak gol terbanyak sepanjang masa klub.</p>
-                </div>
+                    <div class="card career-card" onclick="openDetail('psg')">
+                        <img src="mbappe psg.jpg" class="career-card-img" alt="Kylian Mbappe PSG" onerror="fallbackImage(this, 'psg')">
+                        <h3>Paris Saint-Germain <span>2017–2024</span> <i class="fa-solid fa-arrow-up-right-from-square" style="font-size:0.9rem; margin-left:8px;"></i></h3>
+                        <h4>Raja Gol Ligue 1 &amp; Rekor Klub</h4>
+                        <p>Bergabung dengan rekor €180 juta. Menjelma menjadi ikon global, mencatatkan diri sebagai pencetak gol terbanyak sepanjang masa klub dengan total 256 gol dan mendominasi liga domestik Prancis.</p>
+                    </div>
 
-                <div class="card">
-                    <h3>AS Monaco (2013–2017)</h3>
-                    <p>Mbappé memulai karier profesionalnya di sini dan langsung mencuri perhatian dunia sebagai talenta muda terbaik. Menjadi pemain termuda dalam sejarah Monaco saat debut di usia 16 tahun pada 2015.</p>
-                </div>
+                    <div class="card career-card" onclick="openDetail('monaco')">
+                        <img src="mbapppe as monaco.jpg" class="career-card-img" alt="Kylian Mbappe AS Monaco" onerror="fallbackImage(this, 'monaco')">
+                        <h3>AS Monaco <span>2013–2017</span> <i class="fa-solid fa-arrow-up-right-from-square" style="font-size:0.9rem; margin-left:8px;"></i></h3>
+                        <h4>Debut Fenomenal &amp; Juara Liga</h4>
+                        <p>Memulai karier profesional di akademi legendaris Monaco. Menjadi pemain termuda sepanjang sejarah klub di usia 16 tahun pada 2015, dan menjuarai Ligue 1 secara mengejutkan pada musim 2016-17.</p>
+                    </div>
 
-                <div class="card">
-                    <h3>Masa Junior & Akademi (2004–2013)</h3>
-                    <p><strong>AS Bondy (2004–2011):</strong> Memulai langkah pertama di klub lokal yang dilatih ayahnya, Wilfried Mbappé.<br>
-                    <strong>INF Clairefontaine (2011–2013):</strong> Terpilih masuk ke akademi elit nasional Prancis.</p>
+                    <div class="card career-card" onclick="openDetail('childhood')">
+                        <img src="Mbappe waktu kecil.jpg" class="career-card-img" alt="Kylian Mbappe Waktu Kecil" onerror="fallbackImage(this, 'childhood')">
+                        <h3>Masa Kecil &amp; Akademi <span>2004–2013</span> <i class="fa-solid fa-arrow-up-right-from-square" style="font-size:0.9rem; margin-left:8px;"></i></h3>
+                        <h4>AS Bondy &amp; INF Clairefontaine</h4>
+                        <p>Memulai langkah pertamanya di klub lokal AS Bondy yang dilatih oleh ayahnya sendiri. Bakat luar biasanya membawanya masuk ke akademi elit nasional Prancis, INF Clairefontaine.</p>
+                    </div>
                 </div>
+            </div>
             </div>
         </section>
 
-        <!-- Achievement Section -->
+        <!-- Skills Section -->
+        <section id="Skills">
+            <div class="container">
+                <div class="section-header">
+                    <span class="section-title-bg">ABILITY</span>
+                    <h2 class="section-title">Keahlian <span>Teknis</span></h2>
+                </div>
+                
+                <div class="skills-layout">
+                    <div class="skills-intro" id="skills-intro-area">
+                        <!-- Img Kecepatan Mbappe -->
+                        <div class="skills-img-container" id="skills-image-box" style="margin-bottom: 25px;">
+                            <img src="kecepatan kylian mbappe.jpg" class="skills-img" alt="Kecepatan Kylian Mbappe" onerror="fallbackImage(this, 'sprint')">
+                        </div>
+                        <h3>Kekuatan Atletis &amp; Taktis Tingkat Elit</h3>
+                        <p>Kemampuan Mbappe memadukan kecepatan kinetik mentah dengan keakuratan eksekusi bola menjadikannya ancaman tak tertandingi di lini depan pertahanan lawan. Analisis performa menunjukkan atribut utama berikut berada pada level tertinggi di liga top Eropa.</p>
+                        
+                        <div class="card" style="padding: 24px; background: rgba(252, 163, 17, 0.03); margin-top: 20px;">
+                            <p style="color: var(--text-secondary); margin-bottom: 0; font-size: 0.95rem;">
+                                <i class="fa-solid fa-circle-info" style="color: var(--accent); margin-right: 8px;"></i>
+                                Statistik keahlian di bawah ini diambil berdasarkan kompilasi data performa pertandingan resmi klub dan tim nasional Prancis di turnamen internasional.
+                            </p>
+                        </div>
+                    </div>
+                    
+                    <div class="skills-visual-box" id="skills-bars-area">
+                        <!-- Sprint Speed -->
+                        <div class="skill-item">
+                            <div class="skill-tooltip">Mencatatkan kecepatan lari maksimal hingga 38 km/jam di lapangan.</div>
+                            <div class="skill-info">
+                                <span class="skill-name"><i class="fa-solid fa-bolt" style="color:var(--accent); margin-right:6px;"></i> Kecepatan Sprint (Sprint Speed)</span>
+                                <span class="skill-val" data-val="97">0%</span>
+                            </div>
+                            <div class="skill-bar-container">
+                                <div class="skill-bar-fill" data-percent="97%"></div>
+                            </div>
+                        </div>
+                        
+                        <!-- Dribbling -->
+                        <div class="skill-item">
+                            <div class="skill-tooltip">Kemampuan akselerasi instan dikombinasikan dengan sentuhan bola presisi tinggi saat berlari kencang.</div>
+                            <div class="skill-info">
+                                <span class="skill-name"><i class="fa-solid fa-wand-magic-sparkles" style="color:var(--accent); margin-right:6px;"></i> Dribbling &amp; Kontrol Bola</span>
+                                <span class="skill-val" data-val="92">0%</span>
+                            </div>
+                            <div class="skill-bar-container">
+                                <div class="skill-bar-fill" data-percent="92%"></div>
+                            </div>
+                        </div>
+                        
+                        <!-- Shooting Accuracy -->
+                        <div class="skill-item">
+                            <div class="skill-tooltip">Penyelesaian akhir klinis baik dengan tendangan melengkung maupun tendangan keras mendatar.</div>
+                            <div class="skill-info">
+                                <span class="skill-name"><i class="fa-solid fa-crosshairs" style="color:var(--accent); margin-right:6px;"></i> Akurasi Tembakan (Shooting Accuracy)</span>
+                                <span class="skill-val" data-val="89">0%</span>
+                            </div>
+                            <div class="skill-bar-container">
+                                <div class="skill-bar-fill" data-percent="89%"></div>
+                            </div>
+                        </div>
+                        
+                        <!-- Tactical Awareness -->
+                        <div class="skill-item">
+                            <div class="skill-tooltip">Kemampuan cerdas memecah jebakan offside dan memanfaatkan ruang kosong di lini pertahanan lawan.</div>
+                            <div class="skill-info">
+                                <span class="skill-name"><i class="fa-solid fa-brain" style="color:var(--accent); margin-right:6px;"></i> Kesadaran Taktis (Tactical Awareness)</span>
+                                <span class="skill-val" data-val="85">0%</span>
+                            </div>
+                            <div class="skill-bar-container">
+                                <div class="skill-bar-fill" data-percent="85%"></div>
+                            </div>
+                        </div>
+        </section>
+
+        <!-- Achievements / Portfolio Section -->
         <section id="Achievment">
             <div class="container">
-                <h2 class="section-title">Prestasi & Penghargaan</h2>
-                <div class="card">
-                    <ul>
-                        <li>Piala Dunia FIFA: 2018 (Juara), 2022 (Runner-up)</li>
-                        <li>UEFA Nations League: 2021</li>
-                        <li>Piala Interkontinental FIFA: 2024 (Real Madrid)</li>
-                        <li>Piala Super UEFA: 2024 (Real Madrid)</li>
-                        <li>Ligue 1 (Prancis): 7x Juara (Monaco & PSG)</li>
-                        <li>Coupe de France: 4x Juara</li>
-                        <li>Kejuaraan Eropa U-19 UEFA: 2016</li>
-                    </ul>
+                <div class="section-header">
+                    <span class="section-title-bg">TROPHIES</span>
+                    <h2 class="section-title">Galeri <span>Pencapaian</span></h2>
+                </div>
+                
+                <div class="portfolio-grid" id="portfolio-grid-area">
+                    <!-- Trophy 1 -->
+                    <div class="portfolio-card" onclick="openDetail('worldcup2018')">
+                        <img src="Mbappe juara piala dunia.jpg" class="portfolio-img" alt="Piala Dunia FIFA 2018" onerror="fallbackImage(this, 'worldcup')">
+                        <div class="portfolio-overlay">
+                            <span class="portfolio-tag">Internasional</span>
+                            <h3>Juara Piala Dunia FIFA 2018 <i class="fa-solid fa-arrow-up-right-from-square" style="font-size:0.85rem; margin-left:6px; color:var(--accent);"></i></h3>
+                            <p>Mencetak gol di final di usia 19 tahun, meraih trofi teragung bersama timnas Prancis dan dinobatkan sebagai Pemain Muda Terbaik turnamen.</p>
+                        </div>
+                    </div>
+                    
+                    <!-- Trophy 2 -->
+                    <div class="portfolio-card" onclick="openDetail('goldenboot2022')">
+                        <img src="prestasi kylian mbappe 1.jpg" class="portfolio-img" alt="Piala Dunia 2022 Golden Boot" onerror="fallbackImage(this, 'trophy')">
+                        <div class="portfolio-overlay">
+                            <span class="portfolio-tag">Individu</span>
+                            <h3>Golden Boot Piala Dunia 2022 <i class="fa-solid fa-arrow-up-right-from-square" style="font-size:0.85rem; margin-left:6px; color:var(--accent);"></i></h3>
+                            <p>Mencetak Hat-trick legendaris di pertandingan final Piala Dunia Qatar 2022 dan menyabet gelar pencetak gol terbanyak turnamen dengan 8 gol.</p>
+                        </div>
+                    </div>
+                    
+                    <!-- Trophy 3 -->
+                    <div class="portfolio-card" onclick="openDetail('nationsleague2021')">
+                        <img src="mbappe nations league juara.webp" class="portfolio-img" alt="UEFA Nations League" onerror="fallbackImage(this, 'nationsleague')">
+                        <div class="portfolio-overlay">
+                            <span class="portfolio-tag">Internasional</span>
+                            <h3>Juara UEFA Nations League 2021 <i class="fa-solid fa-arrow-up-right-from-square" style="font-size:0.85rem; margin-left:6px; color:var(--accent);"></i></h3>
+                            <p>Mencetak gol penentu kemenangan sensasional di laga final melawan Spanyol untuk mempersembahkan trofi eropa bagi negaranya.</p>
+                        </div>
+                    </div>
+                    
+                    <!-- Trophy 4 -->
+                    <div class="portfolio-card" onclick="openDetail('ligue1dominion')">
+                        <img src="prestasi kylian mbappe.jpg" class="portfolio-img" alt="Ligue 1 Domestic Dominion" onerror="fallbackImage(this, 'psg2')">
+                        <div class="portfolio-overlay">
+                            <span class="portfolio-tag">Domestik</span>
+                            <h3>Dominasi 7x Juara Ligue 1 <i class="fa-solid fa-arrow-up-right-from-square" style="font-size:0.85rem; margin-left:6px; color:var(--accent);"></i></h3>
+                            <p>Memenangkan 7 gelar juara liga kasta tertinggi Prancis (1x bersama Monaco, 6x bersama PSG) serta 6x beruntun meraih Sepatu Emas liga.</p>
+                        </div>
+                    </div>
+                    
+                    <!-- Trophy 5 -->
+                    <div class="portfolio-card" onclick="openDetail('supercup2024')">
+                        <img src="mbappe real madrid.jpg" class="portfolio-img" alt="Real Madrid Super Cup" onerror="fallbackImage(this, 'realmadrid2')">
+                        <div class="portfolio-overlay">
+                            <span class="portfolio-tag">Klub</span>
+                            <h3>Piala Super UEFA 2024 <i class="fa-solid fa-arrow-up-right-from-square" style="font-size:0.85rem; margin-left:6px; color:var(--accent);"></i></h3>
+                            <p>Debut impian bagi Los Blancos dengan mencetak gol perdana dan langsung merengkuh trofi kejuaraan antar klub UEFA di Warsaw.</p>
+                        </div>
+                    </div>
+                    
+                    <!-- Trophy 6 -->
+                    <div class="portfolio-card" onclick="openDetail('psgscorer')">
+                        <img src="mbappe psg.jpg" class="portfolio-img" alt="PSG All-time Top Scorer" onerror="fallbackImage(this, 'psg3')">
+                        <div class="portfolio-overlay">
+                            <span class="portfolio-tag">Sejarah</span>
+                            <h3>Pencetak Gol Terbanyak PSG <i class="fa-solid fa-arrow-up-right-from-square" style="font-size:0.85rem; margin-left:6px; color:var(--accent);"></i></h3>
+                            <p>Melampaui semua legenda klub untuk menduduki peringkat teratas sepanjang sejarah Paris Saint-Germain dengan torehan 256 gol kompetitif.</p>
+                        </div>
+                    </div>
                 </div>
             </div>
         </section>
 
-        <!-- Contact Section -->
+        <!-- Contact / Agent Section -->
         <section id="Contact">
             <div class="container">
-                <h2 class="section-title">Hubungi Agen</h2>
-                <div class="card" style="max-width: 600px; margin: 0 auto; text-align: center;">
-                    <p>Untuk kerjasama bisnis dan media, silakan hubungi melalui:</p>
-                    <br>
-                    <p><strong>Phone:</strong> +62 878-6803-6735</p>
-                    <p><strong>Email:</strong> Mustofaalatos0@gmail.com</p>
-                    <p><strong>Alamat:</strong> Monaco, France</p>
-                    <div class="btn-group" style="justify-content: center;">
-                        <a href="javascript:void(0)" onclick="window.open('https://mail.google.com/mail/?view=cm&fs=1&to=mustofaalatos0@gmail.com');" class="tombol">Kirim Email</a>
+                <div class="section-header">
+                    <span class="section-title-bg">AGENCY</span>
+                    <h2 class="section-title">Hubungi <span>Agen Resmi</span></h2>
+                </div>
+                
+                <div class="agent-grid">
+                    <!-- Photo Collage (Agent + Mbappe) -->
+                    <div class="agent-img-box" id="agent-image-area">
+                        <div class="agency-collage">
+                            <div class="collage-main">
+                                <img src="foto mbappe dengan agen nya.jpg" alt="Mustofa bersama Mbappe" onerror="fallbackImage(this, 'training_agent')">
+                            </div>
+                            <div class="collage-inset">
+                                <img src="Foto agen mbappe.jpeg" alt="Mustofa Professional Agent" onerror="fallbackImage(this, 'agent_headshot')">
+                            </div>
+                        </div>
+                        <div class="agent-badge">Mustofa &amp; Mbappé | Kemitraan Resmi</div>
+                    </div>
+                    
+                    <!-- Form & Contact Details -->
+                    <div class="contact-card card" id="contact-info-area">
+                        <div class="contact-intro">
+                            <h3>Hubungan Bisnis &amp; Media</h3>
+                            <p>Untuk penawaran sponsor, kemitraan komersial, kontrak klub, dan wawancara media eksklusif Kylian Mbappé, silakan hubungi tim manajemen kami.</p>
+                        </div>
+                        
+                        <div class="contact-info-list">
+                            <!-- Telepon -->
+                            <div class="contact-info-item">
+                                <div class="contact-icon-wrapper">
+                                    <i class="fa-solid fa-phone"></i>
+                                </div>
+                                <div class="contact-text-box">
+                                    <span class="contact-label">Telepon / WhatsApp</span>
+                                    <span class="contact-value">+62 878-6803-6735</span>
+                                </div>
+                            </div>
+                            
+                            <!-- Email -->
+                            <div class="contact-info-item">
+                                <div class="contact-icon-wrapper">
+                                    <i class="fa-solid fa-envelope"></i>
+                                </div>
+                                <div class="contact-text-box">
+                                    <span class="contact-label">Email Resmi</span>
+                                    <span class="contact-value">Mustofaalatos0@gmail.com</span>
+                                </div>
+                            </div>
+                            
+                            <!-- Alamat -->
+                            <div class="contact-info-item">
+                                <div class="contact-icon-wrapper">
+                                    <i class="fa-solid fa-location-dot"></i>
+                                </div>
+                                <div class="contact-text-box">
+                                    <span class="contact-label">Alamat Kantor Agen</span>
+                                    <span class="contact-value">Monaco, France</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="btn-group">
+                            <a href="javascript:void(0)" onclick="window.open('https://mail.google.com/mail/?view=cm&fs=1&to=mustofaalatos0@gmail.com');" class="tombol tombol-primary">
+                                <i class="fa-solid fa-paper-plane"></i> Kirim Email Kemitraan
+                            </a>
+                            <a href="javascript:void(0)" onclick="window.open('https://wa.link/rdfdrp');" class="tombol tombol-secondary">
+                                <i class="fa-brands fa-whatsapp"></i> Chat WhatsApp Agen
+                            </a>
+                        </div>
                     </div>
                 </div>
             </div>
         </section>
     </main>
 
+    <!-- Footer -->
     <footer>
         <div class="container">
-            <p>&copy; 2026 Kylian Mbappé Official. Created by Mustofa.</p>
+            <div class="footer-content">
+                <a href="#Profile" class="footer-logo">KM<span>7</span></a>
+                <p class="footer-text">&copy; 2026 Kylian Mbappé Official (agent). Created by Mustofa alatas.</p>
+                <div class="footer-socials">
+                    <a href="javascript:void(0)" onclick="window.open('https://wa.link/rdfdrp');" class="social-link" title="WhatsApp"><i class="fa-brands fa-whatsapp"></i></a>
+                    <a href="javascript:void(0)" onclick="window.open('https://mail.google.com/mail/?view=cm&fs=1&to=mustofaalatos0@gmail.com');" class="social-link" title="Email"><i class="fa-solid fa-envelope"></i></a>
+                    <a href="#" class="social-link" title="Instagram"><i class="fa-brands fa-instagram"></i></a>
+                </div>
+            </div>
         </div>
     </footer>
 
+    <!-- GSAP CDN Integrations for Premium Scrolling Animations -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+
+    <!-- Main Logic Script -->
+    <script>
+        // --- 1. Responsive Navbar Scroll Effect & Hamburger Menu ---
+        const navbar = document.getElementById('navbar');
+        const hamburgerBtn = document.getElementById('hamburger-btn');
+        const navMenu = document.getElementById('nav-menu');
+        const navLinks = document.querySelectorAll('.nav-links a');
+
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+
+            // Simple Active State Indicator on Scroll
+            let currentSection = "";
+            const sections = document.querySelectorAll('section');
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop - 120;
+                if (window.scrollY >= sectionTop) {
+                    currentSection = section.getAttribute('id');
+                }
+            });
+
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href') === `#${currentSection}`) {
+                    link.classList.add('active');
+                }
+            });
+        });
+
+        hamburgerBtn.addEventListener('click', () => {
+            hamburgerBtn.classList.toggle('active');
+            navMenu.classList.toggle('active');
+        });
+
+        navLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                hamburgerBtn.classList.remove('active');
+                navMenu.classList.remove('active');
+            });
+        });
+
+        // --- 2. Interactive Background Canvas Particle Engine ---
+        const canvas = document.getElementById('particle-canvas');
+        const ctx = canvas.getContext('2d');
+
+        let particlesArray = [];
+        let width = canvas.width = window.innerWidth;
+        let height = canvas.height = window.innerHeight;
+
+        window.addEventListener('resize', () => {
+            width = canvas.width = window.innerWidth;
+            height = canvas.height = window.innerHeight;
+            initParticles();
+        });
+
+        // Dynamic drifting particle representation (soccer-dust & velocity lines)
+        class Particle {
+            constructor() {
+                this.x = Math.random() * width;
+                this.y = Math.random() * height;
+                this.size = Math.random() * 2 + 1;
+                this.speedX = Math.random() * 0.4 - 0.2;
+                this.speedY = Math.random() * -0.5 - 0.15; // Slow rising up
+                this.opacity = Math.random() * 0.4 + 0.1;
+                this.type = Math.random() > 0.88 ? 'circle' : 'dust';
+            }
+
+            update() {
+                this.x += this.speedX;
+                this.y += this.speedY;
+
+                if (this.y < 0) {
+                    this.y = height;
+                    this.x = Math.random() * width;
+                }
+                if (this.x < 0 || this.x > width) {
+                    this.x = Math.random() * width;
+                }
+            }
+
+            draw() {
+                ctx.save();
+                ctx.globalAlpha = this.opacity;
+                
+                if (this.type === 'circle') {
+                    // Small soccer ball / gold abstract orbit
+                    ctx.strokeStyle = '#FCA311';
+                    ctx.lineWidth = 1;
+                    ctx.beginPath();
+                    ctx.arc(this.x, this.y, this.size * 2, 0, Math.PI * 2);
+                    ctx.stroke();
+                } else {
+                    ctx.fillStyle = '#FFFFFF';
+                    ctx.beginPath();
+                    ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+                    ctx.fill();
+                }
+                ctx.restore();
+            }
+        }
+
+        function initParticles() {
+            particlesArray = [];
+            const numberOfParticles = Math.min(50, Math.floor(width / 30));
+            for (let i = 0; i < numberOfParticles; i++) {
+                particlesArray.push(new Particle());
+            }
+        }
+
+        function animateParticles() {
+            ctx.clearRect(0, 0, width, height);
+            
+            // Motion Blur speed lines matching Mbappe's rapid acceleration theme
+            ctx.strokeStyle = 'rgba(252, 163, 17, 0.012)';
+            ctx.lineWidth = 1.5;
+            ctx.beginPath();
+            for (let i = 0; i < 4; i++) {
+                let lineY = (height / 4) * i + Math.sin(Date.now() * 0.0008 + i) * 20;
+                ctx.moveTo(0, lineY);
+                ctx.lineTo(width, lineY - 30);
+            }
+            ctx.stroke();
+
+            particlesArray.forEach(p => {
+                p.update();
+                p.draw();
+            });
+            requestAnimationFrame(animateParticles);
+        }
+
+        initParticles();
+        animateParticles();
+
+        // --- 3. GSAP & ScrollTrigger Animations (Premium & Immersive) ---
+        function initAnimations() {
+            if (typeof gsap === "undefined") {
+                console.warn("GSAP CDN failed to load. Elements remain interactive and accessible.");
+                // Manual progress bar animation fallback if GSAP is unavailable
+                setTimeout(() => {
+                    document.querySelectorAll('.skill-bar-fill').forEach(bar => {
+                        bar.style.width = bar.getAttribute('data-percent');
+                    });
+                    document.querySelectorAll('.skill-val').forEach(val => {
+                        val.textContent = val.getAttribute('data-val') + '%';
+                    });
+                }, 1000);
+                return;
+            }
+
+            gsap.registerPlugin(ScrollTrigger);
+
+            // A. HERO IN-ANIMATIONS
+            const heroTL = gsap.timeline();
+            
+            heroTL.from("#hero-img-container", {
+                duration: 1.4,
+                x: 80,
+                opacity: 0,
+                scale: 0.96,
+                ease: "power4.out"
+            });
+            
+            heroTL.from(".hero-tag", {
+                duration: 0.8,
+                y: -30,
+                opacity: 0,
+                ease: "power3.out"
+            }, "-=1.1");
+
+            heroTL.from("#hero-title", {
+                duration: 1.0,
+                y: 40,
+                opacity: 0,
+                ease: "power3.out"
+            }, "-=0.9");
+
+            heroTL.from(".hero-text h2", {
+                duration: 0.8,
+                y: 20,
+                opacity: 0,
+                ease: "power3.out"
+            }, "-=0.9");
+
+            heroTL.from(".hero-text p", {
+                duration: 0.8,
+                y: 30,
+                opacity: 0,
+                ease: "power3.out"
+            }, "-=0.7");
+
+            heroTL.from(".hero-text .btn-group", {
+                duration: 0.8,
+                y: 20,
+                opacity: 0,
+                ease: "power3.out"
+            }, "-=0.6");
+            
+            heroTL.from(".scroll-indicator", {
+                duration: 0.5,
+                opacity: 0,
+                y: -10,
+                ease: "power2.out"
+            }, "-=0.2");
+
+            // B. ABOUT SECTION ENTER (Smooth scroll slides)
+            gsap.from("#about-card", {
+                scrollTrigger: {
+                    trigger: "#About",
+                    start: "top bottom-=100px",
+                    toggleActions: "play none none none"
+                },
+                duration: 1.2,
+                x: -80,
+                opacity: 0,
+                ease: "power3.out"
+            });
+
+            // Career cards stagger entry
+            gsap.from("#experience-cards .career-card", {
+                scrollTrigger: {
+                    trigger: "#experience-cards",
+                    start: "top bottom-=80px",
+                    toggleActions: "play none none none"
+                },
+                duration: 1.0,
+                y: 50,
+                opacity: 0,
+                stagger: 0.15,
+                ease: "power3.out"
+            });
+
+            // Count-up stats counters safely
+            const stats = document.querySelectorAll(".stat-num");
+            stats.forEach(stat => {
+                const target = parseInt(stat.getAttribute("data-target"), 10);
+                const obj = { val: 0 };
+                gsap.to(obj, {
+                    val: target,
+                    duration: 2.2,
+                    ease: "power2.out",
+                    scrollTrigger: {
+                        trigger: "#stats-box-area",
+                        start: "top bottom-=100px",
+                        toggleActions: "play none none none"
+                    },
+                    onUpdate: () => {
+                        if (target > 1) {
+                            stat.textContent = Math.ceil(obj.val) + "+";
+                        } else {
+                            stat.textContent = Math.ceil(obj.val);
+                        }
+                    }
+                });
+            });
+
+            // C. SKILLS SECTION TRANSITION
+            gsap.from("#skills-image-box", {
+                scrollTrigger: {
+                    trigger: "#Skills",
+                    start: "top bottom-=100px",
+                    toggleActions: "play none none none"
+                },
+                duration: 1.2,
+                scale: 0.94,
+                opacity: 0,
+                ease: "power2.out"
+            });
+
+            gsap.from("#skills-intro-area h3, #skills-intro-area p, #skills-intro-area .card", {
+                scrollTrigger: {
+                    trigger: "#Skills",
+                    start: "top bottom-=100px",
+                    toggleActions: "play none none none"
+                },
+                duration: 1.0,
+                x: -40,
+                opacity: 0,
+                stagger: 0.15,
+                ease: "power3.out"
+            });
+
+            gsap.from("#skills-bars-area", {
+                scrollTrigger: {
+                    trigger: "#Skills",
+                    start: "top bottom-=100px",
+                    toggleActions: "play none none none"
+                },
+                duration: 1.0,
+                x: 40,
+                opacity: 0,
+                ease: "power3.out"
+            });
+
+            // Skill Progress Bars & dynamic text counters on scroll trigger
+            const skillFills = document.querySelectorAll(".skill-bar-fill");
+            const skillVals = document.querySelectorAll(".skill-val");
+
+            ScrollTrigger.create({
+                trigger: "#skills-bars-area",
+                start: "top bottom-=100px",
+                onEnter: () => {
+                    skillFills.forEach(fill => {
+                        const pct = fill.getAttribute("data-percent");
+                        gsap.to(fill, {
+                            width: pct,
+                            duration: 1.8,
+                            ease: "power2.out"
+                        });
+                    });
+
+                    skillVals.forEach(val => {
+                        const targetVal = parseInt(val.getAttribute("data-val"), 10);
+                        const obj = { val: 0 };
+                        gsap.to(obj, {
+                            val: targetVal,
+                            duration: 1.8,
+                            ease: "power2.out",
+                            onUpdate: () => {
+                                val.textContent = Math.ceil(obj.val) + "%";
+                            }
+                        });
+                    });
+                }
+            });
+
+            // D. ACHIEVEMENTS - Staggered cards entry
+            gsap.from("#portfolio-grid-area .portfolio-card", {
+                scrollTrigger: {
+                    trigger: "#portfolio-grid-area",
+                    start: "top bottom-=60px",
+                    toggleActions: "play none none none"
+                },
+                duration: 0.8,
+                y: 50,
+                opacity: 0,
+                stagger: 0.15,
+                ease: "power2.out"
+            });
+
+            // E. CONTACT / AGENT - Premium visual elements entry
+            gsap.from(".collage-main", {
+                scrollTrigger: {
+                    trigger: "#Contact",
+                    start: "top bottom-=80px",
+                    toggleActions: "play none none none"
+                },
+                duration: 1.2,
+                x: -50,
+                opacity: 0,
+                ease: "power3.out"
+            });
+            
+            gsap.from(".collage-inset", {
+                scrollTrigger: {
+                    trigger: "#Contact",
+                    start: "top bottom-=80px",
+                    toggleActions: "play none none none"
+                },
+                duration: 1.4,
+                y: 40,
+                scale: 0.82,
+                opacity: 0,
+                delay: 0.2,
+                ease: "back.out(1.4)"
+            });
+
+            gsap.from("#agent-image-area .agent-badge", {
+                scrollTrigger: {
+                    trigger: "#Contact",
+                    start: "top bottom-=80px",
+                    toggleActions: "play none none none"
+                },
+                duration: 1.0,
+                scale: 0,
+                opacity: 0,
+                delay: 0.5,
+                ease: "back.out(1.6)"
+            });
+
+            gsap.from("#contact-info-area", {
+                scrollTrigger: {
+                    trigger: "#Contact",
+                    start: "top bottom-=80px",
+                    toggleActions: "play none none none"
+                },
+                duration: 1.0,
+                x: 60,
+                opacity: 0,
+                ease: "power3.out"
+            });
+
+            // --- F. BULLETPROOF SAFETY NET ---
+            // If ScrollTrigger gets stuck or fails inside the iframe sandbox,
+            // we force elements to animate to full visibility after a 1.5s delay.
+            setTimeout(() => {
+                document.querySelectorAll(".career-card, .portfolio-card, .stat-box, .collage-main, .collage-inset, .agent-badge, #contact-info-area").forEach(el => {
+                    gsap.to(el, { opacity: 1, y: 0, x: 0, scale: 1, duration: 0.6, overwrite: "auto" });
+                });
+            }, 1500);
+        }
+
+        // DOM Loaded ready-state execution wrapper
+        if (document.readyState === "complete" || document.readyState === "interactive") {
+            initAnimations();
+        } else {
+            document.addEventListener("DOMContentLoaded", initAnimations);
+        }
+
+        
+        // --- 4. Detailed Modal System & Data Store ---
+        const detailData = {
+            realmadrid: {
+                tag: "Klub",
+                title: "Real Madrid C.F.",
+                subtitle: "Era Raksasa Baru Spanyol (2024–Sekarang)",
+                img: "mbappe real madrid.jpg",
+                desc: "<p>Mbappé mewujudkan kepindahan impian masa kecilnya ke klub tersukses di Eropa, Real Madrid C.F., pada Juli 2024 dengan status bebas transfer setelah menyelesaikan kontraknya dengan PSG. Kedatangannya disambut meriah secara luar biasa oleh puluhan ribu Madridistas di Stadion Santiago Bernabéu.</p><p>Ia langsung mencetak gol di pertandingan kompetitif debutnya dan memenangkan trofi Piala Super UEFA melawan Atalanta, membuktikan kelasnya untuk langsung memberikan kontribusi instan di bawah asuhan Carlo Ancelotti.</p>",
+                stats: [
+                    { val: "1", lbl: "Piala Super UEFA" },
+                    { val: "2024", lbl: "Tahun Bergabung" },
+                    { val: "9", lbl: "Nomor Punggung" },
+                    { val: "30+", lbl: "Proyeksi Gol Musim" }
+                ],
+                timeline: [
+                    { time: "Juli 2024", title: "Perkenalan resmi bersejarah di Santiago Bernabéu" },
+                    { time: "Agustus 2024", title: "Debut resmi dan langsung mencetak gol perdana serta menjuarai Piala Super UEFA" }
+                ]
+            },
+            psg: {
+                tag: "Klub",
+                title: "Paris Saint-Germain",
+                subtitle: "Raja Gol Ligue 1 & Rekor Klub (2017–2024)",
+                img: "mbappe psg.jpg",
+                desc: "<p>Bergabung dengan PSG pada 2017 dengan nilai transfer €180 juta yang luar biasa. Selama tujuh musim sarat prestasi di klub ibu kota Prancis tersebut, Mbappé memantapkan dirinya sebagai penyerang paling ditakuti di dunia.</p><p>Ia memecahkan rekor demi rekor di klub dan menyudahi kariernya di Paris sebagai pencetak gol terbanyak sepanjang masa klub dengan total 256 gol kompetitif, mengungguli deretan legenda legendaris seperti Edinson Cavani dan Zlatan Ibrahimovic.</p>",
+                stats: [
+                    { val: "256", lbl: "Gol Total" },
+                    { val: "308", lbl: "Pertandingan" },
+                    { val: "6x", lbl: "Sepatu Emas Ligue 1" },
+                    { val: "6", lbl: "Gelar Juara Ligue 1" }
+                ],
+                timeline: [
+                    { time: "Agustus 2017", title: "Dipinjam dengan kewajiban beli €180 juta dari Monaco" },
+                    { time: "Maret 2023", title: "Mencetak gol ke-201 melewati rekor Cavani sebagai top skor sepanjang masa PSG" },
+                    { time: "Mei 2024", title: "Pertandingan perpisahan dan mengukuhkan rekor abadi dengan 256 gol" }
+                ]
+            },
+            monaco: {
+                tag: "Klub",
+                title: "AS Monaco",
+                subtitle: "Debut Fenomenal & Juara Liga (2013–2017)",
+                img: "mbapppe as monaco.jpg",
+                desc: "<p>Mengawali kiprah sepak bola profesional di akademi kelas dunia AS Monaco. Bakat alaminya yang luar biasa langsung terpancar tajam, di mana ia memecahkan rekor legenda besar Thierry Henry sebagai debutan termuda sepanjang sejarah klub di usia 16 tahun.</p><p>Musim 2016-17 menjadi sensasi global tatkala ia memimpin Monaco menjuarai Ligue 1 secara tidak terduga dan menembus babak semifinal Liga Champions UEFA dengan kecepatan kilat dan ketajamannya yang luar biasa.</p>",
+                stats: [
+                    { val: "27", lbl: "Gol Total" },
+                    { val: "60", lbl: "Laga Bermain" },
+                    { val: "1", lbl: "Gelar Ligue 1" },
+                    { val: "16", lbl: "Tahun Debut" }
+                ],
+                timeline: [
+                    { time: "Desember 2015", title: "Debut profesional perdana di usia 16 tahun 347 hari" },
+                    { time: "Februari 2016", title: "Mencetak gol perdana memecahkan rekor termuda Thierry Henry" },
+                    { time: "Mei 2017", title: "Merengkuh trofi Ligue 1 secara mengejutkan setelah mendepak dominasi PSG" }
+                ]
+            },
+            childhood: {
+                tag: "Sejarah",
+                title: "Masa Kecil & Akademi",
+                subtitle: "AS Bondy & INF Clairefontaine (2004–2013)",
+                img: "Mbappe waktu kecil.jpg",
+                desc: "<p>Lahir di Paris dan tumbuh besar di kawasan Bondy. Ia mulai berlatih sepak bola di bawah bimbingan ayahnya, Wilfried Mbappé, yang melatih tim muda di AS Bondy.</p><p>Kemampuannya mengolah bola, kecepatan refleks, dan insting golnya yang sangat menonjol sejak usia dini membawanya terpilih masuk ke akademi nasional sepak bola elit Prancis di Clairefontaine sebelum diperebutkan oleh seluruh raksasa klub Eropa.</p>",
+                stats: [
+                    { val: "2004", lbl: "Mulai Bermain" },
+                    { val: "AS Bondy", lbl: "Klub Pertama" },
+                    { val: "Clairefontaine", lbl: "Akademi Elit" }
+                ],
+                timeline: [
+                    { time: "2004", title: "Mulai bergabung di AS Bondy" },
+                    { time: "2011", title: "Terpilih masuk akademi elit nasional Clairefontaine" },
+                    { time: "2013", title: "Memilih bergabung dengan pembinaan muda AS Monaco" }
+                ]
+            },
+            worldcup2018: {
+                tag: "Internasional",
+                title: "Piala Dunia FIFA 2018",
+                subtitle: "Juara Dunia di Rusia (2018)",
+                img: "Mbappe juara piala dunia.jpg",
+                desc: "<p>Kylian Mbappé menggetarkan seantero jagat sepak bola dunia pada usia 19 tahun di Piala Dunia Rusia 2018. Ia menjadi bintang kemenangan krusial Prancis saat menghancurkan Argentina 4-3 di babak 16 besar.</p><p>Di laga final yang penuh sejarah, ia mencetak gol dari luar kotak penalti ke gawang Kroasia untuk menyamai pencapaian legendaris Pelé sebagai remaja termuda yang mencetak gol di final Piala Dunia dan merengkuh trofi paling prestisius di bumi.</p>",
+                stats: [
+                    { val: "4", lbl: "Gol Dicetak" },
+                    { val: "1", lbl: "Gelar Juara Dunia" },
+                    { val: "Prancis", lbl: "Tim Nasional" },
+                    { val: "Young Player", lbl: "Pemain Muda Terbaik" }
+                ],
+                timeline: [
+                    { time: "Juni 2018", title: "Mencetak gol Piala Dunia perdana melawan Peru" },
+                    { time: "Juli 2018", title: "Mencetak gol di laga Final untuk mengunci trofi Piala Dunia Prancis kedua" }
+                ]
+            },
+            goldenboot2022: {
+                tag: "Individu",
+                title: "Piala Dunia FIFA 2022",
+                subtitle: "Gelar Top Skor & Hat-Trick Final (2022)",
+                img: "prestasi kylian mbappe 1.jpg",
+                desc: "<p>Kylian Mbappé mencatatkan penampilan individu paling legendaris sepanjang sejarah turnamen modern di Piala Dunia Qatar 2022. Membawa Prancis kembali mencapai final demi mempertahankan gelar juara dunia.</p><p>Di laga final super dramatis melawan Argentina, ia memimpin Prancis bangkit secara spektakuler lewat torehan Hat-trick pertama di laga final Piala Dunia sejak 1966 dan memenangkan Sepatu Emas dengan total 8 gol spektakuler.</p>",
+                stats: [
+                    { val: "8", lbl: "Gol Total" },
+                    { val: "Golden Boot", lbl: "Penghargaan" },
+                    { val: "3", lbl: "Gol di Final" },
+                    { val: "2", lbl: "Asis" }
+                ],
+                timeline: [
+                    { time: "Desember 2022", title: "Mencetak Hat-trick fenomenal bersejarah di laga Final Piala Dunia Qatar" },
+                    { time: "Desember 2022", title: "Secara resmi dinobatkan sebagai Top Skor turnamen meraih Golden Boot" }
+                ]
+            },
+            nationsleague2021: {
+                tag: "Internasional",
+                title: "UEFA Nations League 2021",
+                subtitle: "Trofi Internasional Kedua",
+                img: "mbappe nations league juara.webp",
+                desc: "<p>Mbappé memimpin lini serang Les Bleus untuk menyabet trofi UEFA Nations League pada Oktober 2021. Menyusul kemenangan comeback luar biasa melawan Belgia di semifinal, ia mencetak gol kemenangan ikonik dan dramatis di final melawan Spanyol.</p><p>Penampilan berkelasnya di turnamen mini Eropa ini mempertegas peran sentralnya sebagai pemimpin lini depan tim nasional Prancis masa kini.</p>",
+                stats: [
+                    { val: "2", lbl: "Gol Fase Final" },
+                    { val: "1", lbl: "Trofi Juara" },
+                    { val: "2", lbl: "Asis Fase Final" }
+                ],
+                timeline: [
+                    { time: "Oktober 2021", title: "Mencetak gol penentu kemenangan spektakuler melawan Spanyol di final di Milan" }
+                ]
+            },
+            ligue1dominion: {
+                tag: "Domestik",
+                title: "Dominasi 7x Ligue 1",
+                subtitle: "Penguasa Mutlak Liga Prancis",
+                img: "prestasi kylian mbappe.jpg",
+                desc: "<p>Kylian Mbappé mendirikan hegemoni absolut di sepak bola domestik Prancis dengan meraih total 7 gelar juara liga kasta tertinggi Ligue 1 hanya dalam kurun waktu delapan musim.</p><p>Satu gelar luar biasa diraih bersama AS Monaco pada 2017, sementara enam gelar dominan berikutnya diraih bersama Paris Saint-Germain, ditambah dengan kesuksesannya menyabet gelar Sepatu Emas Ligue 1 selama enam musim beruntun.</p>",
+                stats: [
+                    { val: "7", lbl: "Gelar Juara" },
+                    { val: "6x", lbl: "Beruntun Top Skor" },
+                    { val: "4x", lbl: "Pemain Terbaik Liga" }
+                ],
+                timeline: [
+                    { time: "2017–2024", title: "Membangun dominasi domestik mutlak bersama AS Monaco dan Paris Saint-Germain" }
+                ]
+            },
+            supercup2024: {
+                tag: "Klub",
+                title: "Piala Super UEFA 2024",
+                subtitle: "Debut Instan & Gelar Perdana di Real Madrid",
+                img: "mbappe real madrid.jpg",
+                desc: "<p>Penampilan perdana impian bersama raksasa Spanyol Real Madrid C.F. di laga final Piala Super UEFA melawan Atalanta di Warsawa, Polandia.</p><p>Ia langsung dipercaya tampil starter, menunjukkan ikatan permainan ciamik bersama Bellingham, Vinicius, dan Rodrigo, serta mencetak gol penutup indah di babak kedua untuk menyegel trofi pertamanya dalam seragam putih legendaris.</p>",
+                stats: [
+                    { val: "1", lbl: "Laga Debut" },
+                    { val: "1", lbl: "Gol Dicetak" },
+                    { val: "1", lbl: "Trofi Juara" }
+                ],
+                timeline: [
+                    { time: "14 Agustus 2024", title: "Debut kompetitif pertama, langsung mencetak gol dan mengangkat trofi di Warsawa" }
+                ]
+            },
+            psgscorer: {
+                tag: "Sejarah",
+                title: "Top Skor Sepanjang Masa PSG",
+                subtitle: "Sejarah Agung di Paris Saint-Germain",
+                img: "mbappe psg.jpg",
+                desc: "<p>Sebuah pencapaian individu luar biasa di mana Mbappé melampaui rekor 200 gol klub milik legenda Edinson Cavani pada usia yang tergolong muda.</p><p>Ketika menuntaskan kariernya di Parc des Princes pada pertengahan 2024, ia mengukuhkan rekor fantastis sebanyak 256 gol kompetitif, mematri namanya sebagai penyerang terhebat dan pencetak gol terunggul sepanjang sejarah klub.</p>",
+                stats: [
+                    { val: "256", lbl: "Gol Sejarah" },
+                    { val: "308", lbl: "Total Pertandingan" },
+                    { val: "0.83", lbl: "Rasio Gol/Laga" }
+                ],
+                timeline: [
+                    { time: "Maret 2023", title: "Mencetak gol ke-201 melewati Cavani melawan Nantes" },
+                    { time: "Mei 2024", title: "Mengakhiri masa bakti dengan rekor gol tak tertandingi sebanyak 256 gol" }
+                ]
+            }
+        };
+
+        function openDetail(key) {
+            const data = detailData[key];
+            if (!data) return;
+
+            document.getElementById('detail-modal-tag').textContent = data.tag;
+            document.getElementById('detail-modal-title').textContent = data.title;
+            document.getElementById('detail-modal-subtitle').textContent = data.subtitle;
+            document.getElementById('detail-modal-desc').innerHTML = data.desc;
+            
+            const img = document.getElementById('detail-modal-img');
+            img.src = data.img;
+            img.alt = data.title;
+            img.onerror = function() { fallbackImage(this, key.indexOf('madrid') !== -1 ? 'realmadrid' : key.indexOf('psg') !== -1 ? 'psg' : key.indexOf('monaco') !== -1 ? 'monaco' : 'stadium'); };
+
+            // Render stats
+            const statsBox = document.getElementById('detail-modal-stats');
+            statsBox.innerHTML = '';
+            data.stats.forEach(st => {
+                statsBox.innerHTML += `
+                    <div class="detail-stat-item">
+                        <div class="detail-stat-val">${st.val}</div>
+                        <div class="detail-stat-lbl">${st.lbl}</div>
+                    </div>
+                `;
+            });
+
+            // Render timeline
+            const timelineBox = document.getElementById('detail-modal-timeline');
+            timelineBox.innerHTML = '';
+            data.timeline.forEach(tl => {
+                timelineBox.innerHTML += `
+                    <div class="detail-timeline-item">
+                        <div class="detail-timeline-time">${tl.time}</div>
+                        <div class="detail-timeline-title">${tl.title}</div>
+                    </div>
+                `;
+            });
+
+            const modal = document.getElementById('detail-modal');
+            modal.style.display = 'block';
+            setTimeout(() => {
+                modal.classList.add('active');
+            }, 10);
+        }
+
+        function closeDetail() {
+            const modal = document.getElementById('detail-modal');
+            modal.classList.remove('active');
+            setTimeout(() => {
+                modal.style.display = 'none';
+            }, 400);
+        }
+
+        // --- 5. Photo Lightbox System ---
+        function openLightbox(src, caption) {
+            const img = document.getElementById('lightbox-img');
+            img.src = src;
+            document.getElementById('lightbox-caption').textContent = caption;
+            
+            const modal = document.getElementById('lightbox-modal');
+            modal.style.display = 'flex';
+            setTimeout(() => {
+                modal.classList.add('active');
+            }, 10);
+        }
+
+        function closeLightbox() {
+            const modal = document.getElementById('lightbox-modal');
+            modal.classList.remove('active');
+            setTimeout(() => {
+                modal.style.display = 'none';
+            }, 400);
+        }
+
+        // Add Lightbox on double click
+        document.querySelectorAll('.portfolio-card').forEach(card => {
+            const img = card.querySelector('.portfolio-img');
+            const h3 = card.querySelector('h3').textContent;
+            
+            if(img) {
+                img.addEventListener('dblclick', (e) => {
+                    e.stopPropagation();
+                    openLightbox(img.src, h3);
+                });
+            }
+        });
+
+        // Close modals on clicking outside wrapper
+        window.addEventListener('click', (e) => {
+            const detailModal = document.getElementById('detail-modal');
+            const lightboxModal = document.getElementById('lightbox-modal');
+            if (e.target === detailModal) closeDetail();
+            if (e.target === lightboxModal) closeLightbox();
+        });
+
+        // --- 6. Mouse Parallax effect on Floating Elements ---
+        document.addEventListener('mousemove', (e) => {
+            const floaters = document.querySelectorAll('.floating-accent');
+            const x = (window.innerWidth - e.pageX * 2) / 100;
+            const y = (window.innerHeight - e.pageY * 2) / 100;
+
+            floaters.forEach(fl => {
+                const depth = parseFloat(fl.getAttribute('data-depth')) || 0.1;
+                const moveX = x * depth * 15;
+                const moveY = y * depth * 15;
+                fl.style.transform = `translate(${moveX}px, ${moveY}px)`;
+            });
+        });
+
+        // Recalculate ScrollTrigger positions once ALL images (including fallbacks) are fully loaded
+        window.addEventListener('load', () => {
+            if (typeof ScrollTrigger !== "undefined") {
+                ScrollTrigger.refresh();
+            }
+        });
+    </script>
+
+    <!-- Immersive Lightbox Modal -->
+    <div id="lightbox-modal" class="lightbox-modal">
+        <span class="lightbox-close" onclick="closeLightbox()">&times;</span>
+        <img class="lightbox-content" id="lightbox-img">
+        <div id="lightbox-caption" class="lightbox-caption"></div>
+    </div>
+
+    <!-- Dynamic Detail Modal -->
+    <div id="detail-modal" class="detail-modal">
+        <div class="detail-modal-wrapper">
+            <span class="detail-modal-close" onclick="closeDetail()">&times;</span>
+            <div class="detail-modal-header">
+                <span class="detail-tag" id="detail-modal-tag">Klub</span>
+                <h2 id="detail-modal-title">Real Madrid C.F.</h2>
+            </div>
+            <div class="detail-modal-body">
+                <img id="detail-modal-img" src="" alt="" onerror="fallbackImage(this, 'stadium')">
+                <div class="detail-modal-info">
+                    <h3 id="detail-modal-subtitle">Era Raksasa Baru Spanyol</h3>
+                    <div id="detail-modal-desc"></div>
+                    <div class="detail-stats" id="detail-modal-stats"></div>
+                    <div class="detail-timeline" id="detail-modal-timeline"></div>
+                </div>
+            </div>
+        </div>
+    </div>
 </body>
 </html>
